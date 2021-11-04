@@ -19,7 +19,9 @@ import 'package:icommerce/styles/app_colors.dart';
 import 'package:icommerce/styles/button_style.dart';
 import 'package:icommerce/styles/commonmodule/my_snack_bar.dart';
 import 'package:icommerce/styles/commonmodule/my_widgets.dart';
+import 'package:icommerce/views/image_details_view.dart';
 import 'package:icommerce/views/viewall_reviews.dart';
+import 'package:photo_view/photo_view.dart';
 import 'login_view.dart';
 
 class ProductDetailsView extends StatefulWidget {
@@ -50,8 +52,10 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     return Scaffold(
         bottomNavigationBar: bottomBar(),
         appBar: AppBar(
-            title: Obx(() =>
-                Text(ProductDetailsController.selectedProductName.value))),
+            title: Obx(() => Text(
+                  ProductDetailsController.selectedProductName.value,
+                  style: const TextStyle(fontSize: 16),
+                ))),
         body: getProductDetailsPage());
   }
 
@@ -257,30 +261,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                 ],
               ),
         const SizedBox(height: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 5, bottom: 5, left: 12, right: 12),
-                  child: Text(
-                    '${productDetailsData.qty} ${productDetailsData.unitid}',
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: const TextStyle(
-                        color: Colors.black54,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 13),
-                  )),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -330,15 +310,21 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         //Slider
         Center(
             child: Container(
-          height: 240,
-          child: CarouselSlider(
-            options: CarouselOptions(
-              autoPlay: false,
-              aspectRatio: 2.0,
-              enlargeCenterPage: true,
+          margin: const EdgeInsets.only(top: 10, bottom: 15),
+          // height: 240,
+          child: InkWell(
+            onTap: () {
+              Get.to(ImageDetialsView(getSliderList(productImgList)));
+            },
+            child: CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: false,
+                aspectRatio: 1.0,
+                enlargeCenterPage: true,
+              ),
+              //items: [Image.asset('assets/images/banner1.jpg')],
+              items: getSliderList(productImgList),
             ),
-            //items: [Image.asset('assets/images/banner1.jpg')],
-            items: getSliderList(productImgList),
           ),
 
           // FadeInImage(
@@ -349,7 +335,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           //     placeholder: AssetImage('assets/images/loading.gif')),
           //
         )),
-        const SizedBox(height: 10),
+        const SizedBox(height: 30),
         productDetailsData.discount == '0' ||
                 productDetailsData.discount == null
             ? Container()
@@ -361,7 +347,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     decoration: TextDecoration.lineThrough),
               ),
         const SizedBox(height: 6),
-
         Row(
           children: [
             MyWidgets.textView("\$ ${productDetailsData.newprice.toString()} ",
@@ -388,8 +373,39 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   )
           ],
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 4),
         MyWidgets.textView('Including all texes', Colors.black54, 12),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            MyWidgets.textView('In Stock', Colors.green, 13.0),
+            const SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5, bottom: 5, left: 12, right: 12),
+                      child: Text(
+                        '${productDetailsData.qty} ${productDetailsData.unitid}',
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: const TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13),
+                      )),
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
         /*
                   SizedBox(height: 20),
                   MyWidgets.textView('Highlights', Colors.black, 16,
@@ -503,12 +519,19 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     }
     //print('imageList in slider...$imgList');
 
+    // return imgList
+    //     .map((item) => PhotoView(
+    //           imageProvider: NetworkImage('$imageUrl$item'),
+    //         ))
+    //     .toList();
+
     return imgList
         .map((item) => FadeInImage(
-            fit: BoxFit.fill,
+            fit: BoxFit.contain,
             image: NetworkImage('$imageUrl$item'),
-            placeholder: const AssetImage('assets/images/loading.gif')))
-        .toList();
+            placeholder: const AssetImage('assets/images/loading.gif'))).toList();
+
+
   }
 
   getSimilarProducts(List<Prddata> similarProduct) {
@@ -704,7 +727,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               padding: const EdgeInsets.only(
                                   top: 3, bottom: 3, left: 7, right: 7),
                               child: Text(
-                                '\$ ${productList[index].discount!} % off',
+                                '${productList[index].discount!} % off',
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
                                 style: const TextStyle(
@@ -717,20 +740,33 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       ],
                     ),
                     const SizedBox(height: 2),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 4, bottom: 4, left: 10, right: 6),
+                      child: Text(
+                        '\$ ${productList[index].newprice!}',
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16),
+                      ),
+                    ),
+                    const SizedBox(width: 3),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 4, bottom: 4, left: 10, right: 6),
-                          child: Text(
-                            '\$ ${productList[index].newprice!}',
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w900, fontSize: 16),
-                          ),
-                        ),
-                        const SizedBox(width: 3),
+                        const Padding(
+                            padding: EdgeInsets.only(
+                                top: 6, bottom: 8, left: 10, right: 8),
+                            child: Text(
+                              '  In Stock',
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11),
+                            )),
                         Card(
                           elevation: 2,
                           shape: RoundedRectangleBorder(
@@ -738,7 +774,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           ),
                           child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 5, bottom: 5, left: 12, right: 12),
+                                  top: 3, bottom: 3, left: 10, right: 10),
                               child: Text(
                                 '${productList[index].qty} ${productList[index].unitid}',
                                 textAlign: TextAlign.center,
@@ -751,18 +787,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         ),
                       ],
                     ),
-                    const Padding(
-                        padding: EdgeInsets.only(
-                            top: 6, bottom: 8, left: 10, right: 8),
-                        child: Text(
-                          '  In Stock',
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 11),
-                        )),
                     const SizedBox(height: 4),
                   ],
                 ),

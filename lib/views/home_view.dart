@@ -209,9 +209,9 @@ class _HomeViewState extends State<HomeView> {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             style: const TextStyle(
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w600)),
+                                fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ),
@@ -233,11 +233,11 @@ class _HomeViewState extends State<HomeView> {
                       const SizedBox(width: 15),
                       Expanded(
                         child: Container(
-                          width: 70,
-                          height: 86,
+                          width: 80,
+                          height: 110,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                                 image: NetworkImage(
                                     '$imageUrl${topcatlist[index].image!}')),
                             borderRadius:

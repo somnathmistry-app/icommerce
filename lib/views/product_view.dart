@@ -237,7 +237,7 @@ class ProductView extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         top: 3, bottom: 3, left: 7, right: 7),
                                     child: Text(
-                                      '\$ ${productList[index].discount!} % off',
+                                      '${productList[index].discount!} % off',
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
                                       style: const TextStyle(
@@ -250,20 +250,33 @@ class ProductView extends StatelessWidget {
                             ],
                           ),
                     const SizedBox(height: 2),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 4, bottom: 4, left: 10, right: 10),
+                      child: Text(
+                        '\$ ${productList[index].newprice!}',
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 16),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 4, bottom: 4, left: 10, right: 10),
-                          child: Text(
-                            '\$ ${productList[index].newprice!}',
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w900, fontSize: 16),
-                          ),
-                        ),
-                        const SizedBox(width: 4),
+                        const Padding(
+                            padding: EdgeInsets.only(
+                                top: 6, bottom: 8, left: 10, right: 2),
+                            child: Text(
+                              '  In Stock',
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11),
+                            )),
                         Card(
                           elevation: 2,
                           shape: RoundedRectangleBorder(
@@ -284,18 +297,6 @@ class ProductView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Padding(
-                        padding: EdgeInsets.only(
-                            top: 6, bottom: 8, left: 10, right: 8),
-                        child: Text(
-                          '  In Stock',
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 11),
-                        )),
                     const SizedBox(height: 4),
                   ],
                 ),

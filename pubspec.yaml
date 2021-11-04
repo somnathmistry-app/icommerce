@@ -58,6 +58,7 @@ dependencies:
   html_unescape: ^2.0.0
   html_character_entities: ^1.0.0+1
   curved_navigation_bar: ^1.0.1
+  photo_view: ^0.13.0
 
 dev_dependencies:
   flutter_test:
