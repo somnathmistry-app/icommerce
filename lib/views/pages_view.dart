@@ -132,27 +132,27 @@ class _PagesViewState extends State<PagesView> {
       CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
-        height: 60.0,
+        height: 56.0,
         items: <Widget>[
           Padding(
             padding: const EdgeInsets.all(7.0),
-            child: Icon(Icons.home_filled, size: 22, color: AppColors.white),
+            child: Icon(Icons.home_filled, size: 20, color: AppColors.white),
           ),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Icon(Icons.assistant, size: 24, color: AppColors.white),
+            child: Icon(Icons.assistant, size: 22, color: AppColors.white),
           ),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Icon(Icons.shopping_cart, size: 24, color: AppColors.white),
+            child: Icon(Icons.shopping_cart, size: 22, color: AppColors.white),
           ),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Icon(Icons.notifications, size: 24, color: AppColors.white),
+            child: Icon(Icons.notifications, size: 22, color: AppColors.white),
           ),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Icon(Icons.person, size: 24, color: AppColors.white),
+            child: Icon(Icons.person, size: 22, color: AppColors.white),
           ),
         ],
         color: AppColors.themeColor,

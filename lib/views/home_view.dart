@@ -65,13 +65,14 @@ class _HomeViewState extends State<HomeView> {
                       getTopCategoryList(controller.topcatlist),
                       const SizedBox(height: 15),
                       getBanner(controller.bannerOne.imgurl.toString(),
-                          'We are caring your safety'),
+                          'iCommerce Sale is on'),
                       const SizedBox(height: 20),
                       getCategoryList(controller.catlist),
                       const SizedBox(height: 15),
-                      getBanner(controller.bannerTow.imgurl.toString(),
-                          'Get upto 10% off'),
-                      const SizedBox(height: 20),
+                      getBanner('https://firebasestorage.googleapis.com/v0/b/fir-2707f.appspot.com/o/Website%20banner%201.jpg?alt=media&token=ea6b05be-13a8-482e-ba34-da2c35667045', 'Sale is On')
+                      //getBanner(controller.bannerTow.imgurl.toString(),
+                         // 'Get upto 10% off'),
+                     , const SizedBox(height: 20),
                     ],
                   );
           }
@@ -456,6 +457,7 @@ class _HomeViewState extends State<HomeView> {
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black12),
                 color: Colors.grey[100],
-                borderRadius: const BorderRadius.all(Radius.circular(15.0)))),
+                borderRadius: const BorderRadius.all(Radius.circular(15.0)
+                ))),
       );
 }

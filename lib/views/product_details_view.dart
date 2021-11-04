@@ -782,7 +782,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                 style: const TextStyle(
                                     color: Colors.black54,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 11),
+                                    fontSize: 11
+                                ),
                               )),
                         ),
                       ],
@@ -884,7 +885,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                       style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w800,
-                                          fontSize: 14),
+                                          fontSize: 14
+                                      ),
                                     ),
                                   ],
                                 ),
