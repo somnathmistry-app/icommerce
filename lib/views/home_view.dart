@@ -10,9 +10,11 @@ import 'package:global_configuration/global_configuration.dart';
 import 'package:icommerce/controllers/home_controller.dart';
 import 'package:icommerce/controllers/login_controller.dart';
 import 'package:icommerce/models/home_model.dart';
+import 'package:icommerce/styles/app_colors.dart';
 import 'package:icommerce/views/category_view.dart';
 import 'package:icommerce/views/product_view.dart';
 import 'package:icommerce/search/searchview.dart';
+import 'package:icommerce/views/top_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -64,15 +66,57 @@ class _HomeViewState extends State<HomeView> {
                       const SizedBox(height: 20),
                       getTopCategoryList(controller.topcatlist),
                       const SizedBox(height: 15),
-                      getBanner(controller.bannerOne.imgurl.toString(),
-                          'iCommerce Sale is on'),
+                      InkWell(
+                        onTap: (){
+                          Get.to(TopView());
+                        },
+                        child: getBanner(controller.bannerOne.imgurl.toString(),
+                            'iCommerce Sale is on'),
+                      ),
+
+                      const SizedBox(height: 15),
+                      InkWell(
+                        onTap: (){
+                          Get.to(TopView());
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10, right: 10),
+                          width: double.infinity,
+                          height: 180,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/fir-2707f.appspot.com/o/Website%20banner%201.jpg?alt=media&token=ea6b05be-13a8-482e-ba34-da2c35667045')),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.black12,
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 20),
                       getCategoryList(controller.catlist),
                       const SizedBox(height: 15),
-                      getBanner('https://firebasestorage.googleapis.com/v0/b/fir-2707f.appspot.com/o/Website%20banner%201.jpg?alt=media&token=ea6b05be-13a8-482e-ba34-da2c35667045', 'Sale is On')
+                      //getBanner('https://firebasestorage.googleapis.com/v0/b/fir-2707f.appspot.com/o/Website%20banner%201.jpg?alt=media&token=ea6b05be-13a8-482e-ba34-da2c35667045', 'Sale is On')
+          InkWell(
+            onTap: (){
+              Get.to(TopView());
+            },
+            child: Container(
+            margin: const EdgeInsets.only(left: 10, right: 10),
+            width: double.infinity,
+            height: 180,
+            decoration: const BoxDecoration(
+            image: DecorationImage(
+            fit: BoxFit.fill,
+            image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/fir-2707f.appspot.com/o/Website%20banner%203.jpg?alt=media&token=fc78eff7-379d-4d7a-ac2a-6bf965d24b02')),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.black12,
+            ),
+            ),
+          ),
+
                       //getBanner(controller.bannerTow.imgurl.toString(),
                          // 'Get upto 10% off'),
-                     , const SizedBox(height: 20),
+                      const SizedBox(height: 20),
                     ],
                   );
           }
@@ -292,8 +336,8 @@ class _HomeViewState extends State<HomeView> {
           ),
           Text(
             bannerTitle,
-            style: const TextStyle(
-                color: Colors.green, fontSize: 13, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: AppColors.themeColorTwo, fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 15,
