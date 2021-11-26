@@ -29,19 +29,37 @@ class HomeController extends GetxController {
   getHomeData() async {
     try {
       isLoading(true);
-      var homeData = await HomeApi.fetchHome(box.read('userId'));
-      print('homeData $homeData');
-      print('userId`````````````: ${box.read('userId')}');
 
-      if (homeData != null) {
-        sliderList.assignAll(homeData.sliderlist!);
-        topcatlist.assignAll(homeData.topcatlist!);
-        catlist.assignAll(homeData.catlist!);
-        bannerOne = homeData.banner1!;
-        bannerTow = homeData.banner2!;
-        update();
-        // categoryListStatic.assignAll(categories);
+      if(box.read('userId')==null){
+        var homeData = await HomeApi.fetchHome('0');
+        print('homeData $homeData');
+        print('userId`````````````: ${box.read('userId')}');
+
+        if (homeData != null) {
+          sliderList.assignAll(homeData.sliderlist!);
+          topcatlist.assignAll(homeData.topcatlist!);
+          catlist.assignAll(homeData.catlist!);
+          bannerOne = homeData.banner1!;
+          bannerTow = homeData.banner2!;
+          update();
+          // categoryListStatic.assignAll(categories);
+        }
+      }else{
+        var homeData = await HomeApi.fetchHome(box.read('userId'));
+        print('homeData $homeData');
+        print('userId`````````````: ${box.read('userId')}');
+
+        if (homeData != null) {
+          sliderList.assignAll(homeData.sliderlist!);
+          topcatlist.assignAll(homeData.topcatlist!);
+          catlist.assignAll(homeData.catlist!);
+          bannerOne = homeData.banner1!;
+          bannerTow = homeData.banner2!;
+          update();
+          // categoryListStatic.assignAll(categories);
+        }
       }
+
     } finally {
       isLoading(false);
     }
