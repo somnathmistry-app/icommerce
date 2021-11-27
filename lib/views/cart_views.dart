@@ -178,12 +178,15 @@ class _CartViewState extends State<CartView> {
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 2, bottom: 2, left: 6, right: 8),
-                    child: Text(
-                      '${cartListProducts[index].productname}',
-                      textAlign: TextAlign.start,
-                      maxLines: 2,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 15),
+                    child: SizedBox(
+
+                      child: Text(
+                        '${cartListProducts[index].productname}',
+                        textAlign: TextAlign.start,
+                        maxLines: 2,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 15),
+                      ),
                     ),
                   ),
                   const Padding(

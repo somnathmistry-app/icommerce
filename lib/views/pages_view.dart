@@ -72,14 +72,10 @@ class _PagesViewState extends State<PagesView> {
         title: Row(
           children: [
             Image.asset(
-              'assets/images/logo.png',
-              width: 30,
+              'assets/images/logo.jpg',
+              width: 75,
             ),
             const SizedBox(width: 10),
-            const Text(
-              'iCommerce',
-              style: TextStyle(color: Colors.black, fontSize: 14),
-            ),
           ],
         ),
         backgroundColor: AppColors.white,
@@ -256,7 +252,7 @@ class _PagesViewState extends State<PagesView> {
                     : const Text(''),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: AppColors.white,
-                  child: Image.asset('assets/images/logo.png'),
+                  child: Image.asset('assets/images/logo.jpg', scale: 5),
                 ),
               ),
         )),

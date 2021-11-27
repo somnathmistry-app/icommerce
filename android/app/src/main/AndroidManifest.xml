@@ -2,7 +2,7 @@
     package="com.live.icommerce">
    <application
         android:label="icommerce"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
